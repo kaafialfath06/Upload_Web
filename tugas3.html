@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- HTML Headings / Title -->
+    <title>Fireflies - Cari Cahayanya</title>
+
+    
+    <style>
+        /* ===== Warna tema =====
+           Lumut #5f7a3a | Karat #b5532a | Cahaya #e8a33d
+           Abu   #2a2d24 | Teks  #d9d2bd | Malam  #0d0f0b */
+
+        /* CSS Background */
+        body {
+            background-color: #0d0f0b;
+            background-image: url("BG.jpeg");
+            background-size: cover;
+            background-attachment: fixed;
+
+            font-family: Lora, Georgia, serif;
+            color: #d9d2bd;
+
+            margin: 0;
+            padding: 0;
+        }
+
+        /* CSS Selectors */
+        h1 {
+            font-family: Oswald, Impact, sans-serif;
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-align: center;
+            color: #d9d2bd;
+            background-color: #1c1f17;
+            border-bottom: 4px solid #b5532a;
+
+            padding: 25px;
+            margin: 0;
+        }
+
+        h2 {
+            font-family: Oswald, Impact, sans-serif;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #e8a33d;
+            border-bottom: 2px solid #5f7a3a;
+
+            padding: 10px;
+            margin-top: 40px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* CSS Class */
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            margin: auto;
+
+            background-color: rgba(13, 15, 11, 0.9);
+
+            padding: 30px;
+            border: 2px solid #2a2d24;
+            border-top: none;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        /* CSS ID */
+        #slogan {
+            font-family: Oswald, Impact, sans-serif;
+            text-align: center;
+            color: #e8a33d;
+            letter-spacing: 5px;
+
+            font-size: 28px;
+            font-weight: 700;
+
+            padding: 20px;
+            border-top: 1px solid #b5532a;
+            border-bottom: 1px solid #b5532a;
+        }
+
+        /* ===== SLOT GAMBAR (hanya 3) =====
+           Taruh gambar di folder "images" sesuai nama yang tampil
+           di kotak. Sebelum gambar ada, kotak tampil sebagai placeholder. */
+        .slot {
+            position: relative;
+            margin: 20px 0;
+            overflow: hidden;
+            background-color: #1c1f17;
+            border: 2px dashed #5f7a3a;
+        }
+
+        .slot::before {
+            content: attr(data-label);
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            text-align: center;
+            font-family: Oswald, sans-serif;
+            letter-spacing: 1px;
+            color: #7d8566;
+            white-space: pre-line;
+        }
+
+        .slot img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slot-hero { aspect-ratio: 21 / 9; }
+        .slot-card { aspect-ratio: 4 / 3; margin: 0; }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery figure {
+            margin: 0;
+        }
+
+        .gallery figcaption {
+            font-family: Oswald, sans-serif;
+            text-align: center;
+            padding-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* HTML Links */
+        a {
+            color: #d9d2bd;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #e8a33d;
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible,
+        select:focus-visible, textarea:focus-visible {
+            outline: 2px solid #e8a33d;
+            outline-offset: 2px;
+        }
+
+        /* HTML Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #2a2d24;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            font-family: Oswald, sans-serif;
+            letter-spacing: 1px;
+            background-color: #1c1f17;
+            color: #e8a33d;
+        }
+
+        .rahasia {
+            color: #d9593a;
+            font-weight: 600;
+        }
+
+        /* HTML Lists */
+        li {
+            margin: 8px;
+        }
+
+        /* HTML Form */
+        label {
+            font-size: 17px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+
+            margin-top: 5px;
+            margin-bottom: 15px;
+
+            box-sizing: border-box;
+
+            background-color: #1c1f17;
+            color: #d9d2bd;
+            border: 1px solid #5f7a3a;
+            font-family: inherit;
+            font-size: 16px;
+        }
+
+        button {
+            font-family: Oswald, sans-serif;
+            letter-spacing: 2px;
+            background-color: #b5532a;
+            color: #d9d2bd;
+
+            border: none;
+            padding: 12px 25px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #cf6232;
+        }
+
+        nav {
+            font-family: Oswald, sans-serif;
+            letter-spacing: 2px;
+            background-color: #2a2d24;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 12px;
+        }
+
+        blockquote {
+            margin: 20px 0;
+            padding: 10px 25px;
+            border-left: 4px solid #e8a33d;
+            font-size: 20px;
+        }
+
+        mark {
+            background-color: #e8a33d;
+            color: #0d0f0b;
+            padding: 0 4px;
+        }
+
+        /* HTML Media */
+        video {
+            width: 500px;
+            max-width: 100%;
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        iframe {
+            max-width: 100%;
+        }
+
+        /* Border Style */
+        .border {
+            border-style: ridge;
+            border-color: #5f7a3a;
+            border-width: 4px;
+            background-color: rgba(28, 31, 23, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HTML Heading -->
+    <header id="home">
+        <h1>FIREFLIES</h1>
+    </header>
+
+    <div class="container">
+
+        <nav>
+            <a href="#home">Beranda</a>
+            <a href="#tentang">Tentang</a>
+            <a href="#galeri">Galeri</a>
+            <a href="#divisi">Divisi</a>
+            <a href="#prioritas">Prioritas</a>
+            <a href="#operasi">Operasi</a>
+            <a href="#masuk">Masuk</a>
+        </nav>
+
+        <!-- GAMBAR 1: banner utama -->
+        <div class="slot slot-hero" data-label="BANNER UTAMA&#10;images/hero.jpg">
+            <img src="images/Tlou.jpg" alt="Banner utama Fireflies" onerror="this.style.display='none'">
+        </div>
+
+        <!-- HTML Paragraph -->
+        <h2 id="tentang">Tentang Fireflies</h2>
+
+        <p>
+            <b>Fireflies</b> adalah gerakan perlawanan yang berjuang
+            mengembalikan ketertiban di dunia yang dikuasai infeksi
+            dan pemerintahan militer.
+        </p>
+
+        <p>
+            Misi kami adalah menemukan
+            <strong>obat bagi umat manusia</strong>
+            sebelum cahaya terakhir padam.
+        </p>
+
+        <!-- HTML Formatting -->
+        <p>
+            Fokus kami meliputi
+            <b>penelitian medis</b>,
+            <i>perlindungan penyintas</i>, dan
+            <mark>operasi perlawanan</mark>.
+        </p>
+
+        <!-- HTML Quotations -->
+        <h2>Keyakinan Kami</h2>
+
+        <blockquote>
+            <i>
+                "Di tengah gelap, cahaya kecil pun bisa menunjukkan jalan."
+            </i>
+        </blockquote>
+
+        <!-- HTML Colors -->
+        <p id="slogan">
+            CARI CAHAYANYA.
+        </p>
+
+        <!-- GAMBAR 2 & 3: galeri -->
+        <h2 id="galeri">Galeri</h2>
+
+        <div class="gallery">
+            <figure>
+                <div class="slot slot-card" data-label="FOTO 1&#10;images/foto1.jpg">
+                    <img src="images/firefly.jpg" alt="Foto 1" onerror="this.style.display='none'">
+                </div>
+            </figure>
+
+            <figure>
+                <div class="slot slot-card" data-label="FOTO 2&#10;images/foto2.jpg">
+                    <img src="images/zombi.jpg" alt="Foto 2" onerror="this.style.display='none'">
+                </div>
+            </figure>
+        </div>
+
+        <!-- HTML Links -->
+        <h2>Informasi Resmi</h2>
+
+        <p>
+            Pelajari lebih lanjut tentang ceritanya:
+            <a href="https://id.wikipedia.org/wiki/The_Last_of_Us">
+                The Last of Us
+            </a>
+        </p>
+
+        <!-- HTML Lists -->
+        <h2 id="divisi">Divisi</h2>
+
+        <ul class="border">
+            <li>Penelitian Medis</li>
+            <li>Operasi Perlawanan</li>
+            <li>Pasokan &amp; Penyelundupan</li>
+            <li>Pengintaian</li>
+            <li>Unit Studi Cordyceps</li>
+        </ul>
+
+        <h2 id="prioritas">Prioritas Misi</h2>
+
+        <ol class="border">
+            <li>Menemukan Obat</li>
+            <li>Melindungi Penyintas</li>
+            <li>Melawan Kekuasaan Militer</li>
+            <li>Membangun Kembali Masyarakat</li>
+        </ol>
+
+        <!-- HTML Table -->
+        <h2 id="operasi">Operasi</h2>
+
+        <table>
+            <tr>
+                <th>Operasi</th>
+                <th>Divisi</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>Riset Obat</td>
+                <td>Penelitian Medis</td>
+                <td>Aktif</td>
+            </tr>
+
+            <tr>
+                <td>Studi Sampel Cordyceps</td>
+                <td>Unit Studi Cordyceps</td>
+                <td class="rahasia">Rahasia</td>
+            </tr>
+
+            <tr>
+                <td>Pemetaan Jalur Aman</td>
+                <td>Pengintaian</td>
+                <td>Penelitian</td>
+            </tr>
+        </table>
+
+        <!-- HTML Block & Inline -->
+        <h2>Elemen Block &amp; Inline</h2>
+
+        <div>
+            <p>
+                Fireflies adalah
+                <span style="color:#e8a33d;">
+                    gerakan perlawanan bawah tanah
+                </span>
+                yang berjuang demi kelangsungan hidup umat manusia.
+            </p>
+        </div>
+
+        <!-- HTML Forms -->
+        <h2 id="masuk">Masuk ke Markas</h2>
+
+        <form>
+
+            <label for="user">Nama Anggota:</label>
+            <input type="text" id="user" name="user">
+
+            <label for="code">Kode Akses:</label>
+            <input type="password" id="code" name="kode_akses">
+
+            <label for="division">Divisi:</label>
+
+            <select id="division" name="divisi">
+                <option>Penelitian Medis</option>
+                <option>Operasi Perlawanan</option>
+                <option>Pasokan &amp; Penyelundupan</option>
+                <option>Pengintaian</option>
+                <option>Unit Studi Cordyceps</option>
+            </select>
+
+            <label for="key">Laporan / Pesan:</label>
+
+            <textarea id="key" rows="5"></textarea>
+
+            <button type="submit">
+                Kirim
+            </button>
+
+        </form>
+
+        <!-- HTML Audio -->
+        <h2>Audio</h2>
+
+        <div class="media">
+
+            <audio controls>
+                <source src="RE-backsound.mp3" type="audio/mpeg">
+                Browser kamu tidak mendukung audio HTML.
+            </audio>
+
+        </div>
+
+        <!-- HTML Video -->
+        <h2>Video</h2>
+
+        <div class="center">
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/JZ-YYj7VopU?si=Ddj_XqOq0bwPItWz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <!-- HTML Comments -->
+        <!--
+            Ini adalah komentar HTML.
+            Tidak akan tampil di website.
+        -->
+
+        <br>
+
+        <hr style="border-color:#2a2d24;">
+
+        <div class="center">
+            <p>
+                <b>&copy; 2026 - Fireflies. Hak cipta dilindungi.</b>
+            </p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.299973249784!2d106.83943747404318!3d-6.2241210609559925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3a137839737%3A0x96d5fa3f0882a7b0!2sFirefly%20Corporation!5e0!3m2!1sid!2sid!4v1792257189191!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+
+    </div>
+
+</body>
+</html>
